@@ -1,0 +1,33 @@
+\ProvidesPackage{WIP}
+%  WATERMARK IMPROVED PACKAGE
+%         developed by
+%        ANTONI GIMENEZ
+%
+%-------------------------------------------------------------------------------------------------
+\newif\ifallpages
+\newif\ifevenpages
+\newif\ifoddpages
+%-------------------------------------------------------------------------------------------------	
+%   Use: \watermark[color (optional)]{message}		Ex: \watermark[blue!30]{This is a test}
+%
+%   Configuration of printed pages, notice that if none is activated the watermark won't be printed.
+%
+\allpagestrue
+%\evenpagestrue
+%\oddpagestrue
+%-------------------------------------------------------------------------------------------------
+\newcommand{\watermark}[2][red!30]{
+	\ifallpages	
+		\newwatermark[allpages , angle=45 , scale=2, color=#1]{{#2}}
+	\else
+		\ifevenpages
+			\newwatermark[evenpages , angle=45 , scale=2, color=#1]{{#2}}
+		\else
+			\ifoddpages
+				\newwatermark[oddpages , angle=45 , scale=2, color=#1]{{#2}}
+			\else
+	
+			\fi
+		\fi			
+	\fi	
+}
